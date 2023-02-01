@@ -1,0 +1,10 @@
+settings.json
+/archive/*.csv
+.vscode
+.DS_Store
+/tools/lastprice
+*.csv
+/tools/input/*.json
+/input_night/*.json
+/input/*.json
+objects.xlsx
