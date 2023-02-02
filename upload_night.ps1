@@ -1,4 +1,4 @@
-﻿# v0.2 first prod
+# v0.2 first prod
 Import-Module posh-ssh
 
 #read settings
@@ -6,7 +6,7 @@ $settings = (get-content (Join-Path -Path $PSScriptRoot -ChildPath "settings.jso
 
 Import-Module ((join-path -path (join-path -Path $PSScriptRoot -ChildPath "tools") -ChildPath "source.psm1"))
 
-$credential = new-object System.Management.Automation.PSCredential($settings.sftpUsername,$settings.sftpPassword)
+$credential = new-object System.Management.Automation.PSCredential($settings.sftpUsername, (ConvertTo-SecureString $settings.sftpPassword -AsPlaintext -Force) )
 
 $sftpPath = $settings.sftpPath
 $instanceName = $settings.instanceName
@@ -16,7 +16,7 @@ Clear-Host
 # warn if Terminal is down
 if ((Get-Process eikon).count -lt 1){
     $tgMessage = "$instanceName warning:`r`Terminal is not running"
-    Send-TelegramMessage -tgToken $settins.tgToken -chatId $settings.chatId -text $tgMessage
+    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text $tgMessage
     Write-Warning $tgMessage
     }
 
@@ -45,7 +45,7 @@ while ($terminalCounter -ge 0) {
 #are we done?
 if ((Get-ChildItem $PSScriptRoot\tools\output.csv).count -eq 0){
     Write-Warning "Failed to import data"
-    Send-TelegramMessage -tgToken $settins.tgToken -chatId $settings.chatId -text "¯\_(ツ)_/¯`r`n$instancename`r`nfailed to import data"
+    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text "¯\_(ツ)_/¯`r`n$instancename`r`nfailed to import data"
     exit 1
 }
 
@@ -55,7 +55,7 @@ $lastUpdate = (Get-ChildItem "$PSScriptRoot\tools\output.csv").LastWriteTime
 $sftp = (New-SFTPSession -computer $settings.sftpServer -Port $settings.sftpPort -Credential $credential)
 if (!$sftp) {
     Write-Warning "Cannot establish SFTP connection"
-    Send-TelegramMessage -tgToken $settins.tgToken -chatId $settings.chatId -text "¯\_(ツ)_/¯`r`n$instancename`r`nCannot connect to SFTP."
+    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text "¯\_(ツ)_/¯`r`n$instancename`r`nCannot connect to SFTP."
     exit
 }
 
@@ -78,12 +78,12 @@ Get-ChildItem "$PSScriptRoot\tools\output.csv"| ForEach-Object {
                 Move-Item -Force $newName "$PSScriptRoot\archive\"
                 Remove-Item -Force "$newNameHashFile"
                 $tgMessage = "$instanceName`r`nupload successful`r`nIP is $myPublicIP`r`ngeolocation is $myLocation`r`nData update: $lastUpdate"
-                Send-TelegramMessage -tgToken $settins.tgToken -chatId $settings.chatId -text $tgMessage
+                Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text $tgMessage
                 Write-Host $tgMessage
                 }else{
                     $_
                     $tgMessage = "$instanceName`r`nupload failed`r`nIP is $myPublicIP`r`ngeolocation is $myLocation`r`nData update: $lastUpdate"
-                    Send-TelegramMessage -tgToken $settins.tgToken -chatId $settings.chatId -text $tgMessage
+                    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text $tgMessage
                     Write-Warning $tgMessage
                     exit
                     }
@@ -95,6 +95,6 @@ Remove-Item $PSScriptRoot\tools\*.csv -Force | Out-Null
 
 #check data is actually updated
 if ((Get-Content -path ($PSScriptRoot + "\tools\lastprice")) -like "0"){
-    Send-TelegramMessage -tgToken $settins.tgToken -chatId $settings.chatId -text "Warning`r`n$instanceName data seems to be not updated.`r`nPlease check!"
+    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text "Warning`r`n$instanceName data seems to be not updated.`r`nPlease check!"
     Write-Warning "Calypso data seems to be not updated. Please check!"
 }
