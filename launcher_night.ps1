@@ -8,9 +8,6 @@ $workToMinutes = $settings.workToMinutesNight
 $intervalRun = $settings.intervalRunNight #minutes
 $intervalCheck = $settings.intervalCheckNight #seconds
 
-#read settings
-$settings = (get-content (Join-Path -Path $PSScriptRoot -ChildPath "settings.json") | ConvertFrom-json)
-
 $host.ui.RawUI.WindowTitle = "output night Launcher"
 
 $testTerminalNow = $true
