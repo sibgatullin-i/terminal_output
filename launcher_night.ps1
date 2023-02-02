@@ -16,7 +16,7 @@ function Check-Apps {
     $timeNow = ((get-date).tostring("HH:mm"))
     #test Terminal
     $Global:testTerminalPrev = $Global:testTerminalNow
-    if ((Get-Process | Where-Object -Property ProcessName -eq "Terminal").count -eq 0){
+    if ((Get-Process | Where-Object -Property ProcessName -eq "eikon").count -eq 0){
         $Global:testTerminalNow = $false
         }else{
             $Global:testTerminalNow = $true
