@@ -20,7 +20,7 @@ data_fields_wDate = ["DATE_NAME","BID_NAME","ASK_NAME","OPEN_NAME","CLOSE_NAME",
 data_fields_output = ["QUOTE_SET","QUOTE_NAME","DATE_NAME","BID_NAME","ASK_NAME","OPEN_NAME","CLOSE_NAME","HIGH_NAME","LOW_NAME","LAST_NAME"]
 
 print('Setting terminal API key...')
-terminal.set_app_key(settings.TerminalAppKey)
+terminal.set_app_key(settings.terminalAppKey)
 
 #reading input json objects to a dataframe data; instruments and fields are lists
 print('Reading input objects from {}...'.format(script_inputFolder))
