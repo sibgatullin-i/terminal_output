@@ -4,6 +4,7 @@ settings.json
 .DS_Store
 /tools/lastprice
 *.csv
+*.sha256
 /tools/input/*.json
 /input_night/*.json
 /input/*.json
