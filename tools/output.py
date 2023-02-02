@@ -9,8 +9,11 @@ script_inputFolder = os.path.join(script_rootFolder,sys.argv[1])
 script_parentFolder = os.path.join(script_rootFolder, "../")
 output_csv = os.path.join(script_rootFolder,'output.csv')
 lastprice_file = os.path.join(script_rootFolder,'lastprice')
-settings_File = open ( (os.path.join(script_parentFolder, 'settings.json')), "r" )
-settings = json.loads(settings_File.read(), object_hook=lambda d: SimpleNamespace(**d))
+settings_file = open ( (os.path.join(script_parentFolder, 'settings.json')), "r" )
+settings = json.loads(settings_file.read(), object_hook=lambda d: SimpleNamespace(**d))
+
+print(settings)
+exit()
 
 data = pandas.DataFrame()
 instruments = []
