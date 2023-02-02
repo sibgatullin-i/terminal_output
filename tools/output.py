@@ -26,9 +26,10 @@ terminal.set_app_key(settings.terminalAppKey)
 print('Reading input objects from {}...'.format(script_inputFolder))
 i = 0
 for filename in os.listdir(script_inputFolder):
-    with open(os.path.join(script_inputFolder, filename), 'r') as f:
-        json_dict = json.loads(f.read())
-        f.close()
+    if filename.endswith("*.json"):
+        with open(os.path.join(script_inputFolder, filename), 'r') as f:
+            json_dict = json.loads(f.read())
+            f.close()
         df = pandas.DataFrame(json_dict,index=[i])
         instruments.append(df.iloc[0]['FEED_ADDRESS'])
         for field in data_fields_wDate:
