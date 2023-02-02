@@ -12,9 +12,6 @@ lastprice_file = os.path.join(script_rootFolder,'lastprice')
 settings_file = open ( (os.path.join(script_parentFolder, 'settings.json')), "r" )
 settings = json.loads(settings_file.read(), object_hook=lambda d: SimpleNamespace(**d))
 
-print(settings)
-exit()
-
 data = pandas.DataFrame()
 instruments = []
 fields = []
