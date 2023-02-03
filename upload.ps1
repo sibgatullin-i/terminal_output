@@ -82,7 +82,7 @@ Get-ChildItem "$PSScriptRoot\tools\output.csv"| ForEach-Object {
                 Write-Host $tgMessage
                 }else{
                     $_
-                    $tgMessage = "$instanceName`r`nupload failed`r`nIP is $myPublicIP`r`ngeolocation is $myLocation`r`nData update: $lastUpdate"
+                    $tgMessage = '¯\_(ツ)_/¯'+"`r`n$instanceName`r`nupload failed`r`nIP is $myPublicIP`r`ngeolocation is $myLocation`r`nData update: $lastUpdate"
                     Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text $tgMessage
                     Write-Warning $tgMessage
                     exit
