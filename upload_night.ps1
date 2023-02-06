@@ -45,7 +45,7 @@ while ($terminalCounter -ge 0) {
 #are we done?
 if ((Get-ChildItem $PSScriptRoot\tools\output.csv).count -eq 0){
     Write-Warning "Failed to import data"
-    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text '¯\_(ツ)_/¯'+"`r`n$instancename`r`nfailed to import data"
+    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text '¯\_(ツ)_/¯' + "`r`n$instancename`r`nfailed to import data"
     exit 1
 }
 
@@ -55,7 +55,7 @@ $lastUpdate = (Get-ChildItem "$PSScriptRoot\tools\output.csv").LastWriteTime
 $sftp = (New-SFTPSession -computer $settings.sftpServer -Port $settings.sftpPort -Credential $credential)
 if (!$sftp) {
     Write-Warning "Cannot establish SFTP connection"
-    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text '¯\_(ツ)_/¯'+"`r`n$instancename`r`nCannot connect to SFTP."
+    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text '¯\_(ツ)_/¯' + "`r`n$instancename`r`nCannot connect to SFTP."
     exit
 }
 
