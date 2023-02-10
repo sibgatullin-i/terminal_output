@@ -93,7 +93,7 @@ print('Adding Russian Wheat index...')
 extraDateTo = datetime.date.today().strftime("%Y-%m-%d")
 extraDateFrom = (datetime.date.today() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
 instrument = settings.mdhruExtraInstrument1
-requestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(setting.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
+requestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
 print(requestUri)
 exit
 
