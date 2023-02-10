@@ -24,7 +24,7 @@ function Get-MDHRuValue {
     param(
         [Parameter(Mandatory)]$username,
         [Parameter(Mandatory)]$password,
-        [Parameter(Mandatory)]$uri
+        [Parameter(Mandatory)]$uri,
         [Parameter(Mandatory)]$ticker,
         [Parameter(Mandatory)]$field,
         [Parameter(Mandatory)]$from,
@@ -35,17 +35,19 @@ function Get-MDHRuValue {
     $params = @{
         Authentication = "Basic"
         Credential = $cred
-        Uri = "$uri/$ticker/data/?field=$field&from=$from&to=$to"
+        Uri = ("{0}/{1}/data/?field={2}&from={3}&to={4}" -f $uri,$ticker,$field,$from,$to)
     }
-    $response = Invoke-WebRequest @param
-    if ($response.StatusCode -ne 200) {
-        Write-Warning "Failed with status: $($response.StatusDescription)"
+    Write-host "will get $($params.uri)"
+    $response = Invoke-WebRequest @params
+    if (!$response) {
+        Write-Warning "Failed"
         return $false
     }
     try { $responseJson = $response.Content | ConvertFrom-Json }
     catch {
         Write-Warning "Failed to parse response"
         return $false
-        }
+    }
+    if ($responseJson[0].label -ne $field) { return $false }
     return $true,$responseJson
 }
