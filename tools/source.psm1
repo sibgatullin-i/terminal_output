@@ -51,3 +51,13 @@ function Get-MDHRuValue {
     if ($responseJson[0].label -ne $field) { return $false }
     return $true,$responseJson
 }
+
+function Get-CsvLineOneValue {
+    param(
+        [Parameter(Mandatory)]$quoteSet,
+        [Parameter(Mandatory)]$qouteName,
+        [Parameter(Mandatory)]$dateName,
+        [Parameter(Mandatory)]$value
+    )
+    return 
+}

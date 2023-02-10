@@ -23,5 +23,6 @@
   "intervalCheckNight": 30,
   "mdhruUri": "https://sample.com/data/api/",
   "mdhruUsername": "name",
-  "mdhruPassword": "password"
+  "mdhruPassword": "password",
+  "mdhruExtraInstrument1": ["ticker", "field", "quote_set", "NAME"]
 }

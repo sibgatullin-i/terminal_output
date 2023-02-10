@@ -89,6 +89,14 @@ for index in data.index:
             if type(data.at[index,fld]) != pandas._libs.missing.NAType:
                 data.at[index,fld] = round(data.at[index,fld] * data.at[index,'MULT_COEF'] , 10) #because something about floating point accuracy
 
+print('Adding Russian Wheat index...')
+extraDateTo = datetime.date.today().strftime("%Y-%m-%d")
+extraDateFrom = (datetime.date.today() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
+instrument = settings.mdhruExtraInstrument1
+requestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(setting.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
+print(requestUri)
+exit
+
 #removing non-required fields
 for col in data.columns:
     if col not in data_fields_output:
