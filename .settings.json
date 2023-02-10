@@ -20,5 +20,8 @@
   "workToHoursNight": 18,
   "workToMinutesNight": 30,
   "intervalRunNight": 120,
-  "intervalCheckNight": 30
+  "intervalCheckNight": 30,
+  "mdhruUri": "https://sample.com/data/api/",
+  "mdhruUsername": "name",
+  "mdhruPassword": "password"
 }
