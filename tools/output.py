@@ -101,14 +101,13 @@ instrument = settings.mdhruExtraInstrument1
 extraRequestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
 extraResponse = requests.get(extraRequestUri, auth=(settings.mdhruUsername, settings.mdhruPassword))
 extraObject = json.loads(extraResponse.text)
-extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse=True)
-extraValue = extraSortedData[0]['value']
-extraDate = extraSortedData[0]['time']
-extraDate = datetime.datetime.fromisoformat(extraDate)
-extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
-print(instrument[2], instrument[3],extraDate,extraValue)
-
-#data.loc[len(data.index)] = [instrument[2], instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
+if len(extraObject) > 1:
+    extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse=True)
+    extraValue = extraSortedData[0]['value']
+    extraDate = extraSortedData[0]['time']
+    extraDate = datetime.datetime.fromisoformat(extraDate)
+    extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
+    #data.loc[len(data.index)] = [instrument[2], instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
 
 os.system('cls') #Windows only clear screen
 
