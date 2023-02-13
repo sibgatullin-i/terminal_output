@@ -89,22 +89,26 @@ for index in data.index:
             if type(data.at[index,fld]) != pandas._libs.missing.NAType:
                 data.at[index,fld] = round(data.at[index,fld] * data.at[index,'MULT_COEF'] , 10) #because something about floating point accuracy
 
-#print('Adding Russian Wheat index...')
-#extraDateTo = datetime.date.today().strftime("%Y-%m-%d")
-#extraDateFrom = (datetime.date.today() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
-#instrument = settings.mdhruExtraInstrument1
-#extraRequestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
-#extraResponse = requests.get(extraRequestUri, auth=(settings.mdhruUsername, settings.mdhruPassword))
-#extraObject = json.loads(extraResponse.text)
-#extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse=True)
-#extraValue = sorted_data[0]['value']
-#extraDate = sorted_data[0]['time']
-#todo date convert
-
 #removing non-required fields
 for col in data.columns:
     if col not in data_fields_output:
         data.drop(columns=col,inplace=True)
+
+print('Adding Russian Wheat index...')
+extraDateTo = datetime.date.today().strftime("%Y-%m-%d")
+extraDateFrom = (datetime.date.today() - datetime.timedelta(days=30)).strftime("%Y-%m-%d")
+instrument = settings.mdhruExtraInstrument1
+extraRequestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
+extraResponse = requests.get(extraRequestUri, auth=(settings.mdhruUsername, settings.mdhruPassword))
+extraObject = json.loads(extraResponse.text)
+extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse=True)
+extraValue = extraSortedData[0]['value']
+extraDate = extraSortedData[0]['time']
+extraDate = datetime.datetime.fromisoformat(extraDate)
+extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
+print(instrument[2], instrument[3],extraDate,extraValue)
+
+#data.loc[len(data.index)] = [instrument[2], instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
 
 os.system('cls') #Windows only clear screen
 
