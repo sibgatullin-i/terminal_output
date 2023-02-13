@@ -97,8 +97,8 @@ extraRequestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhr
 extraResponse = requests.get(extraRequestUri, auth=(settings.mdhruUsername, settings.mdhruPassword))
 extraObject = json.loads(extraResponse.text)
 extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse=True)
-extraValue = extrasSortedData[0]['value']
-extraDate = extrasSortedData[0]['time']
+extraValue = extraSortedData[0]['value']
+extraDate = extraSortedData[0]['time']
 
 
 print(tabulate(sorted_data))
