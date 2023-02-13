@@ -101,7 +101,7 @@ extraValue = extraSortedData[0]['value']
 extraDate = extraSortedData[0]['time']
 
 
-print(tabulate(extraSortedData))
+print(tabulate.tabulate(extraSortedData))
 #todo date convert
 """ 
 #removing non-required fields
