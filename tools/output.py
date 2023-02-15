@@ -104,7 +104,7 @@ try:
     extraObject = json.loads(extraResponse.text)
 except:
     extraObject = False
-if extraObject
+if extraObject:
     extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse = True)
     extraValue = extraSortedData[0]['value']
     extraDate = extraSortedData[0]['time']
