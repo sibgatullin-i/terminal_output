@@ -22,7 +22,7 @@ data_fields_output = ["QUOTE_SET","QUOTE_NAME","DATE_NAME","BID_NAME","ASK_NAME"
 print('Setting terminal API key...')
 terminal.set_app_key(settings.terminalAppKey)
 
-#reading input json objects to a dataframe data; instruments and fields are lists
+#reading input json objects to a dataframe; instruments and fields are lists
 print('Reading input objects from {}...'.format(script_inputFolder))
 i = 0
 for filename in os.listdir(script_inputFolder):
@@ -73,11 +73,11 @@ else:
     file = open(lastprice_file,'w')
     file.write('0')
     file.close()
-#remove techincal row
+#remove technical row
 data.drop(data.loc[data['FEED_ADDRESS'] == 'BTC='].index,inplace=True)
 
 
-print('Proccessing Calypso modification...')
+print('Processing Calypso modification...')
 #multiply all values by MULT_COEF and to string, modify date field
 for index in data.index:
     for fld in data_fields_wDate:
