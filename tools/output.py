@@ -133,6 +133,7 @@ if extraObject:
     extraDate = extraSortedData[0]['time']
     extraDate = datetime.datetime.fromisoformat(extraDate)
     extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
+    data.loc[len(data.index) + 1] = ['default', instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
     data.loc[len(data.index) + 1] = [instrument[2], instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
     extraObject = False
 ## / Instrument 2 ##
