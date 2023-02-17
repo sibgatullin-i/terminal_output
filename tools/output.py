@@ -129,7 +129,7 @@ except:
     extraObject = False
 if extraObject:
     extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse = True)
-    extraValue = extraSortedData[0]['value']
+    extraValue = (extraSortedData[0]['value'] / 100)
     extraDate = extraSortedData[0]['time']
     extraDate = datetime.datetime.fromisoformat(extraDate)
     extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
