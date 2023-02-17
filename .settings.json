@@ -24,5 +24,6 @@
   "mdhruUri": "https://sample.com/data/api/",
   "mdhruUsername": "name",
   "mdhruPassword": "password",
-  "mdhruExtraInstrument1": ["ticker", "field", "quote_set", "NAME"]
+  "mdhruExtraInstrument1": ["ticker", "field", "quote_set", "NAME"],
+  "mdhruExtraInstrument2": ["ticker", "field", "quote_set", "NAME"]
 }
