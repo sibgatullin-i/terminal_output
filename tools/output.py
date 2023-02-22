@@ -117,25 +117,25 @@ if extraObject:
 ## / Instrument 1 ##
 
 ### Instrument 2 ###
-print('Adding RUSFAR index...')
-extraDateTo = datetime.date.today().strftime("%Y-%m-%d")
-extraDateFrom = (datetime.date.today() - datetime.timedelta(days=30)).strftime("%Y-%m-%d")
-instrument = settings.mdhruExtraInstrument2
-extraRequestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
-try:
-    extraResponse = requests.get(extraRequestUri, auth = (settings.mdhruUsername, settings.mdhruPassword), verify = False)
-    extraObject = json.loads(extraResponse.text)
-except:
-    extraObject = False
-if extraObject:
-    extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse = True)
-    extraValue = (extraSortedData[0]['value'] / 100)
-    extraDate = extraSortedData[0]['time']
-    extraDate = datetime.datetime.fromisoformat(extraDate)
-    extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
-    data.loc[len(data.index) + 1] = ['default', instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
-    data.loc[len(data.index) + 1] = [instrument[2], instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
-    extraObject = False
+#print('Adding RUSFAR index...')
+#extraDateTo = datetime.date.today().strftime("%Y-%m-%d")
+#extraDateFrom = (datetime.date.today() - datetime.timedelta(days=30)).strftime("%Y-%m-%d")
+#instrument = settings.mdhruExtraInstrument2
+#extraRequestUri = '{0}/{1}/data/?field={2}&from={3}&to={4}'.format(settings.mdhruUri, instrument[0], instrument[1], extraDateFrom, extraDateTo)
+#try:
+#    extraResponse = requests.get(extraRequestUri, auth = (settings.mdhruUsername, settings.mdhruPassword), verify = False)
+#    extraObject = json.loads(extraResponse.text)
+#except:
+#    extraObject = False
+#if extraObject:
+#    extraSortedData = sorted(extraObject, key=lambda x: x['time'], reverse = True)
+#    extraValue = (extraSortedData[0]['value'] / 100)
+#    extraDate = extraSortedData[0]['time']
+#    extraDate = datetime.datetime.fromisoformat(extraDate)
+#    extraDate = datetime.datetime.strftime(extraDate, '%d/%m/%Y')
+#    data.loc[len(data.index) + 1] = ['default', instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
+#    data.loc[len(data.index) + 1] = [instrument[2], instrument[3], extraDate, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue, extraValue]
+#    extraObject = False
 ## / Instrument 2 ##
 
 os.system('cls') #Windows only clear screen
