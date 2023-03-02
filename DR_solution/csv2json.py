@@ -76,3 +76,5 @@ for file in files:
   print('Reading {}'.format(file))
   csvData = pandas.read_csv(file)
   print(csvData)
+  print(csvData['RIC'])
+  print(csvData.columns)
