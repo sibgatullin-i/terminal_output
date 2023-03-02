@@ -75,7 +75,7 @@ print('Found files: {}'.format(len(files)))
 for file in files:
   print('Reading {}'.format(file))
   csvData = pandas.read_csv(file)
-  jsonBlueprint.RICs = csvData[RIC]
+  jsonBlueprint.RICs = csvData['RIC']
   jsonBlueprint.fields = csvData.columns
 
 print(json.dumps(jsonBlueprint))
