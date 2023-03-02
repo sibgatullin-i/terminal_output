@@ -83,4 +83,4 @@ for filename in os.listdir(inputFolder):
     for field in csvData.columns:
       jsonBlueprint['fields'].append(field)
     with open(newFile, 'w') as outfile:
-      json.dump(jsonBlueprint, outfile)
+      json.dump(jsonBlueprint, outfile, indent = 2, ensure_ascii = True)
