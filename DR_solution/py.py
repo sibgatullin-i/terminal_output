@@ -10,14 +10,12 @@ outputFolder = os.path.join(script_rootFolder, 'outputCSV')
 settings_file = open ( (os.path.join(script_parentFolder, 'settings.json')), "r" )
 settings = json.loads(settings_file.read(), object_hook=lambda d: SimpleNamespace(**d))
 
-#add reading settings, move to folder and iterate trough files
-
 if len(sys.argv) > 1:
     inputDataFile = os.path.join(sys.argv[1])
-    #inputDataFile = open(os.path.join(sys.argv[1]), 'r')
-    #print('Reading {}...'.format(inputDataFile))
-    #inputData = json.loads(inputDataFile.read())
-    #inputDataFile.close()
+    if not os.path.isfile(inpudataFile):
+        print('file not found {}'.format(inputDataFile))
+        print('See ya!')
+        exit()
 else:
     print('No JSON-file was passed as argument. Will proceed all files from {}'.format(inputFolder))
     answer = input('Are you sure? Y/N (default N):')
@@ -25,11 +23,20 @@ else:
         print('See ya!')
         exit()
 
+filesCount = 0
+for inputDataFile in os.listdir(inputFolder):
+    if inputDataFile.endswith(".json") and os.path.isfile(inputDataFile):
+        filesCount += 1
+if filesCount == 0:
+    print('No JSON-files found in {}'.format(inputFolder))
+    print('See ya!')
+    exit()
+
 print('Setting terminal API key...')
 terminal.set_app_key(settings.terminalAppKey)
 
 for inputDataFile in os.listdir(inputFolder):
-    if inputDataFile.endswith(".json"):
+    if inputDataFile.endswith(".json") and os.path.isfile(inputDataFile):
         print('Reading {}...'.format(inputDataFile))
         inputDataFile = open(os.path.join(inputFolder, inputDataFile), 'r')
         inputData = json.loads(inputDataFile.read())
