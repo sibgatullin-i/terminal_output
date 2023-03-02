@@ -1,4 +1,4 @@
-import sys,os,json
+import sys,os,json,pandas
 
 script_rootFolder = os.path.dirname(__file__)
 script_parentFolder = os.path.join(script_rootFolder, "../")
@@ -70,6 +70,9 @@ if len(files) == 0:
   print('No CSV-files found in {}'.format(inputFolder))
   print('See ya!')
   exit()
+print('Found files: {}'.format(len(files)))
 
-for filename in files:
-  print(filename)
+for file in files:
+  print('Reading {}'.format(file))
+  csvData = pandas.read_csv(file)
+  print(csvData)
