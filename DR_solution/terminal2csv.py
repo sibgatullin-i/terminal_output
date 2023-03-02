@@ -36,6 +36,7 @@ print('Setting terminal API key...')
 terminal.set_app_key(settings.terminalAppKey)
 
 for inputDataFile in os.listdir(inputFolder):
+    inputDataFile = os.path.join(inputFolder, inputDataFile)
     if inputDataFile.endswith(".json") and os.path.isfile(inputDataFile):
         print('Reading {}...'.format(inputDataFile))
         inputDataFile = open(os.path.join(inputFolder, inputDataFile), 'r')
