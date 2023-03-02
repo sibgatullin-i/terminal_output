@@ -77,10 +77,10 @@ for filename in os.listdir(inputFolder):
     file = os.path.join(inputFolder, filename)
     print('Reading {}'.format(file))
     csvData = pandas.read_csv(file)
-    newFilename = os.path.join(outputFolder, filename[:-4] + '.json')
-    print(newFilename)
+    newFile = os.path.join(outputFolder, filename[:-4] + '.json')
     for RIC in csvData['RIC']:
       jsonBlueprint['RICs'].append(RIC)
     for field in csvData.columns:
       jsonBlueprint['fields'].append(field)
-    
+    with open(newFile, 'w') as outfile:
+      json.dump(jsonBlueprint, outfile)
