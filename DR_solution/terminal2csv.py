@@ -69,15 +69,15 @@ for inputDataFile in os.listdir(inputFolder):
             ### DATE modifications
             for column in inputData['dateColumnsMMDDYYYY']:
                 if column in data.columns:
-                    date = data.loc[index].at[column][1]
-                    if type(date) != pandas._libs.missing.NAType:
+                    if type(data.loc[index].at[column][1]) != pandas._libs.missing.NAType:
+                        date = data.loc[index].at[column][1]
                         date = datetime.datetime.strptime(date,'%Y-%m-%d')
                         date = datetime.datetime.strftime(date, '%m/%d/%Y')
                         data.loc[index].at[column] = date
             for column in inputData['dateColumnsDDMMYYYY']:
                 if column in data.columns:
-                    date = data.loc[index].at[column][1]
-                    if type(date) != pandas._libs.missing.NAType:
+                    if type(data.loc[index].at[column][1]) != pandas._libs.missing.NAType:
+                        date = data.loc[index].at[column][1]
                         date = datetime.datetime.strptime(date,'%Y-%m-%d')
                         date = datetime.datetime.strftime(date, '%d.%m.%Y')
                         data.loc[index].at[colum] = date
