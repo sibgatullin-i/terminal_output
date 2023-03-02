@@ -9,7 +9,6 @@ settings.json
 /input_night/*.json
 /input/*.json
 objects.xlsx
-/DR_soultion/input/*.csv
-/DR_solution/input/*.json
-/DR_solution/output/*.csv
-/DR_solution/output/*.json
+/DR_soultion/inputCSV/*.csv
+/DR_solution/inputJSON/*.json
+/DR_solution/outputCSV/*.csv

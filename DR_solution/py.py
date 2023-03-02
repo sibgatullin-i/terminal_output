@@ -5,8 +5,8 @@ import eikon as terminal
 
 script_rootFolder = os.path.dirname(__file__)
 script_parentFolder = os.path.join(script_rootFolder, "../")
-inputFolder = os.path.join(script_rootFolder, 'input')
-outputFolder = os.path.join(script_rootFolder, 'output')
+inputFolder = os.path.join(script_rootFolder, 'inputJSON')
+outputFolder = os.path.join(script_rootFolder, 'outputCSV')
 settings_file = open ( (os.path.join(script_parentFolder, 'settings.json')), "r" )
 settings = json.loads(settings_file.read(), object_hook=lambda d: SimpleNamespace(**d))
 
@@ -28,7 +28,7 @@ print('Setting terminal API key...')
 terminal.set_app_key(settings.terminalAppKey)
 
 for inputDataFile in os.listdir(inputFolder):
-    if filename.endswith(".json"):
+    if inputDataFile.endswith(".json"):
         print('Reading {}...'.format(inputDataFile))
         inputDataFile = open(inptDataFile, 'r')
         inputData = json.loads(inputDataFile.read())
