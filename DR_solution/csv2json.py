@@ -8,8 +8,8 @@ outputFolder = os.path.join(script_rootFolder, 'inputJSON')
 jsonBlueprintString = '''
 {
 	"fileName":  "filename.csv",
-  "RICs":  ["RIC1"],
-  "fields":  ["Exchange ID"],
+  "RICs":  [],
+  "fields":  [],
 	"Bid Price": "CF_BID",
 	"Primary Activity": "PRIMACT_1",
 	"Last Price": "CF_LAST",
@@ -77,10 +77,12 @@ for filename in os.listdir(inputFolder):
     file = os.path.join(inputFolder, filename)
     print('Reading {}'.format(file))
     csvData = pandas.read_csv(file)
-    newFile = os.path.join(outputFolder, filename[:-4] + '.json')
+    newFilename = filename[0:-3] + 'json'
+    newFile = os.path.join(outputFolder, newFilename)
     for RIC in csvData['RIC']:
       jsonBlueprint['RICs'].append(RIC)
     for field in csvData.columns:
       jsonBlueprint['fields'].append(field)
+    jsonBlueprint['filename'] = newFilename
     with open(newFile, 'w') as outfile:
       json.dump(jsonBlueprint, outfile, indent = 2, ensure_ascii = True)
