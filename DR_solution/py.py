@@ -21,7 +21,7 @@ if len(sys.argv) > 1:
 else:
     print('No JSON-file was passed as argument. Will proceed all files from {}'.format(inputFolder))
     answer = input('Are you sure? Y/N (default N):')
-    if answer != 'Y':
+    if answer != 'Y' or answer != 'y':
         print('See ya!')
         exit()
 
@@ -92,6 +92,6 @@ for inputDataFile in os.listdir(inputFolder):
             if len(filename) < 1:
                 print('No filename given. Ясно.')
                 exit()
-        filename = os.path.join(script_rootFolder, filename)
+        filename = os.path.join(outputFolder, filename)
         data.to_csv(filename, index = False)
         print('Saved to {}'.format(filename))
