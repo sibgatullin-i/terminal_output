@@ -20,8 +20,9 @@ if len(sys.argv) > 1:
     #inputDataFile.close()
 else:
     print('No JSON-file was passed as argument. Will proceed all files from {}'.format(inputFolder))
-    answer = input('Are you sure? Y/N:')
+    answer = input('Are you sure? Y/N (default N):')
     if answer != 'Y':
+        print('See ya!')
         exit()
 
 print('Setting terminal API key...')
@@ -30,7 +31,7 @@ terminal.set_app_key(settings.terminalAppKey)
 for inputDataFile in os.listdir(inputFolder):
     if inputDataFile.endswith(".json"):
         print('Reading {}...'.format(inputDataFile))
-        inputDataFile = open(inptDataFile, 'r')
+        inputDataFile = open(inputDataFile, 'r')
         inputData = json.loads(inputDataFile.read())
         inputDataFile.close()
 
