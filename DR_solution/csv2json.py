@@ -86,3 +86,4 @@ for filename in os.listdir(inputFolder):
     jsonBlueprint['fileName'] = filename
     with open(newFile, 'w') as outfile:
       json.dump(jsonBlueprint, outfile, indent = 2, ensure_ascii = True)
+    print('JSON-file saved: {}'.format(newFile))

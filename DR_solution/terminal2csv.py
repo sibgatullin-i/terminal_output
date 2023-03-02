@@ -68,6 +68,7 @@ for inputDataFile in os.listdir(inputFolder):
                 if column in inputData.keys():
                     data.at[index, column] = sourceData.at[index, inputData[column]]
             ### DATE modifications
+            print(data)
             for column in inputData['dateColumnsMMDDYYYY']:
                 if column in data.columns:
                     if type(data.at[index, column]) != pandas._libs.missing.NAType:
