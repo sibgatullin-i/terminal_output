@@ -1,5 +1,4 @@
 import sys,os,json,pandas,datetime
-#from fileinput import filename
 from types import SimpleNamespace
 import eikon as terminal
 
@@ -46,7 +45,6 @@ for inputDataFile in os.listdir(inputFolder):
             print('Failed to import JSON')
             exit()
 
-        #instruments = []
         fields = []
         instruments = inputData['RICs']
 
