@@ -72,10 +72,15 @@ if len(files) == 0:
   exit()
 print('Found files: {}'.format(len(files)))
 
-for file in files:
+for filename in os.listdir(inputFolder):
+  file = os.path.join(inputFolder, filename)
   print('Reading {}'.format(file))
   csvData = pandas.read_csv(file)
-  jsonBlueprint['RICs'] = csvData['RIC']
-  jsonBlueprint['fields'] = csvData.columns
+  newFilename = filename[-20:] + '.json'
+  print(newFilename)
+  for RIC in csvData['RIC']:
+    jsonBlueprint['RICs'].append(RIC)
+  for field in csvData.columns:
+    jsonBlueprint['fields'].append(field)
 
-print(json.dumps(jsonBlueprint))
+print(json.dumps(jsonBlueprint, ensure_ascii = True, indent = 2))
