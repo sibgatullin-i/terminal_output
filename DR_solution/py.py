@@ -21,7 +21,7 @@ if len(sys.argv) > 1:
 else:
     print('No JSON-file was passed as argument. Will proceed all files from {}'.format(inputFolder))
     answer = input('Are you sure? Y/N (default N):')
-    if not answer == 'Y' or not answer == 'y':
+    if not (answer == 'Y' or answer == 'y'):
         print('See ya!')
         exit()
 
