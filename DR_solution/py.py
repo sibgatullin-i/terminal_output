@@ -31,7 +31,7 @@ terminal.set_app_key(settings.terminalAppKey)
 for inputDataFile in os.listdir(inputFolder):
     if inputDataFile.endswith(".json"):
         print('Reading {}...'.format(inputDataFile))
-        inputDataFile = open(inputDataFile, 'r')
+        inputDataFile = open(os.path.join(inputFolder, inputDataFile), 'r')
         inputData = json.loads(inputDataFile.read())
         inputDataFile.close()
 
