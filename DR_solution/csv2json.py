@@ -8,12 +8,8 @@ outputFolder = os.path.join(script_rootFolder, 'inputJSON')
 jsonBlueprintString = '''
 {
 	"fileName":  "filename.csv",
-    "RICs":  [
-		"RIC1"
-	],
-    "fields":  [
-		"Exchange ID"
-	],
+    "RICs":  ["RIC1"],
+    "fields":  ["Exchange ID"],
 	"Bid Price": "CF_BID",
 	"Primary Activity": "PRIMACT_1",
 	"Last Price": "CF_LAST",
@@ -40,21 +36,37 @@ jsonBlueprintString = '''
 	"Exchange Description": "CF_EXCHNG",
 	"Currency Code": "CF_CURR",
 	"Volume": "CF_VOL",
-    "RIC":  "Instrument",
-    "dateColumnsMMDDYYYY":  [
+  "RIC":  "Instrument",
+  "dateColumnsMMDDYYYY": [
 		"Trade Date",
 		"Fixing Date",
 		"Previous Day Trade Date",
 		"Universal Day Trade Date"
 	],
-	"dateColumnsDDMMYYYY":  [
+	"dateColumnsDDMMYYYY": [
 		"General Value1 Date",
 		"General Value2 Date"
 	],
-    "currentTimeColumn":  [
-		"Instrument Snap Time"
-	]
+    "currentTimeColumn": ["Instrument Snap Time"]
 }
 '''
 
-print(json.loads(jsonBlueprintString))
+jsonBlueprint = json.loads(jsonBlueprintString)
+
+for filename in os.listdir(outputFolder):
+  if filename.endswith('.json'):
+    print('Deleting {}'.format(filiename))
+    os.remove(filename)
+
+print('Reading all CSV-files from {}'.format(inputFolder))
+files = []
+for filename in os.listdir(inputFolder):
+  if filename.endswith('.csv') and os.path.isfile(filename):
+    files += filename
+if len(files) == 0:
+  print('No CSV-files found in {}'.format(inputFolder))
+  print('See ya!')
+  exit()
+
+for filename in files:
+  print(filename)
