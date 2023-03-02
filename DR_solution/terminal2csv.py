@@ -24,6 +24,7 @@ else:
 
 filesCount = 0
 for inputDataFile in os.listdir(inputFolder):
+    inputDataFile = os.path.join(inputFolder, inpuDataFile)
     if inputDataFile.endswith(".json") and os.path.isfile(inputDataFile):
         filesCount += 1
 if filesCount == 0:
