@@ -12,7 +12,7 @@ settings = json.loads(settings_file.read(), object_hook=lambda d: SimpleNamespac
 
 if len(sys.argv) > 1:
     inputDataFile = os.path.join(sys.argv[1])
-    if not os.path.isfile(inpudataFile):
+    if not os.path.isfile(inputDataFile):
         print('file not found {}'.format(inputDataFile))
         print('See ya!')
         exit()
