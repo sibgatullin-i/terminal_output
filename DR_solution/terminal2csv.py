@@ -47,9 +47,8 @@ for inputDataFile in os.listdir(inputFolder):
             print('Failed to import JSON')
             exit()
 
-        fields = []
         instruments = inputData['RICs']
-
+        fields = []
         for field in inputData['fields']:
             if field != 'RIC' and field in inputData.keys():
                 fields.append(inputData[field])
@@ -68,17 +67,20 @@ for inputDataFile in os.listdir(inputFolder):
                 if column in inputData.keys():
                     data.at[index, column] = sourceData.at[index, inputData[column]]
             ### DATE modifications
-            print(data)
             for column in inputData['dateColumnsMMDDYYYY']:
                 if column in data.columns:
-                    if type(data.at[index, column]) != pandas._libs.missing.NAType:
-                        data.at[index, column] = datetime.datetime.strptime(data.at[index, column],'%Y-%m-%d')
-                        data.at[index, column] = datetime.datetime.strftime(data.at[index, column], '%m/%d/%Y')
+                    date = data.loc[index].at[column][1]
+                    if type(date) != pandas._libs.missing.NAType:
+                        date = datetime.datetime.strptime(date,'%Y-%m-%d')
+                        date = datetime.datetime.strftime(date, '%m/%d/%Y')
+                        data.loc[index].at[column] = date
             for column in inputData['dateColumnsDDMMYYYY']:
                 if column in data.columns:
-                    if type(data.at[index, column]) != pandas._libs.missing.NAType:
-                        data.at[index, column] = datetime.datetime.strptime(data.at[index, column],'%Y-%m-%d')
-                        data.at[index, column] = datetime.datetime.strftime(data.at[index, column], '%d.%m.%Y')
+                    date = data.loc[index].at[column][1]
+                    if type(date) != pandas._libs.missing.NAType:
+                        date = datetime.datetime.strptime(date,'%Y-%m-%d')
+                        date = datetime.datetime.strftime(date, '%d.%m.%Y')
+                        data.loc[index].at[colum] = date
             # / DATE modifications
 
             ### Adding time
