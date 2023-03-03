@@ -75,6 +75,7 @@ for inputDataFile in os.listdir(inputFolder):
                     else:
                         data.at[index, column] = sourceData.at[index, inputData[column]]
         data.dropna(subset=['RIC'], inplace=True)
+        data.sort_values(by=['RIC'], inplace=True])
 
         print(data)
 
