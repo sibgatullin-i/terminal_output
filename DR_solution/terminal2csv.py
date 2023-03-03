@@ -9,18 +9,11 @@ outputFolder = os.path.join(script_rootFolder, 'outputCSV')
 settings_file = open ( (os.path.join(script_parentFolder, 'settings.json')), "r" )
 settings = json.loads(settings_file.read(), object_hook=lambda d: SimpleNamespace(**d))
 
-if len(sys.argv) > 1:
-    inputDataFile = os.path.join(sys.argv[1])
-    if not os.path.isfile(inputDataFile):
-        print('file not found {}'.format(inputDataFile))
-        print('See ya!')
-        exit()
-else:
-    print('No JSON-file was passed as argument. Will proceed all files from {}'.format(inputFolder))
-    answer = input('Are you sure? Y/N (default N):')
-    if not (answer == 'Y' or answer == 'y'):
-        print('See ya!')
-        exit()
+print('No JSON-file was passed as argument. Will proceed all files from {}'.format(inputFolder))
+answer = input('Are you sure? Y/N (default N):')
+if not (answer == 'Y' or answer == 'y'):
+    print('See ya!')
+    exit()
 
 filesCount = 0
 for inputDataFile in os.listdir(inputFolder):
@@ -63,8 +56,8 @@ for inputDataFile in os.listdir(inputFolder):
         data = pandas.DataFrame(index = range(len(inputData['RICs'])), columns = inputData['fields'])
 
         timeNow = datetime.datetime.today().strftime('%m/%d/%Y %H:%M:%S')
-
-        for index in data.index:
+        print(sourceData)
+        for index in sourceData.index:
             for column in data.columns:
                 if column in inputData.keys() and type(sourceData.at[index, inputData[column]]) != pandas._libs.missing.NAType:
                     if column in inputData['dateColumnsMMDDYYYY']:
@@ -81,6 +74,7 @@ for inputDataFile in os.listdir(inputFolder):
                         data.at[index, column] = timeNow
                     else:
                         data.at[index, column] = sourceData.at[index, inputData[column]]
+        data.dropna(subset=['RIC'], inplace=True)
 
         print(data)
 

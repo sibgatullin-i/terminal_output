@@ -51,8 +51,6 @@ jsonBlueprintString = '''
 }
 '''
 
-jsonBlueprint = json.loads(jsonBlueprintString)
-
 for filename in os.listdir(outputFolder):
   file = os.path.join(outputFolder, filename)
   if filename.endswith('.json'):
@@ -74,6 +72,7 @@ print('Found files: {}'.format(len(files)))
 
 for filename in os.listdir(inputFolder):
   if filename.endswith('.csv') and os.path.isfile(file):
+    jsonBlueprint = json.loads(jsonBlueprintString)
     file = os.path.join(inputFolder, filename)
     print('Reading {}'.format(file))
     csvData = pandas.read_csv(file)
@@ -87,3 +86,4 @@ for filename in os.listdir(inputFolder):
     with open(newFile, 'w') as outfile:
       json.dump(jsonBlueprint, outfile, indent = 2, ensure_ascii = True)
     print('JSON-file saved: {}'.format(newFile))
+    del csvData,RIC,field,jsonBlueprint
