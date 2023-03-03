@@ -62,32 +62,25 @@ for inputDataFile in os.listdir(inputFolder):
 
         data = pandas.DataFrame(index = range(len(inputData['RICs'])), columns = inputData['fields'])
 
+        timeNow = datetime.datetime.today().strftime('%m/%d/%Y %H:%M:%S')
+
         for index in data.index:
             for column in data.columns:
-                if column in inputData.keys():
-                    data.at[index, column] = sourceData.at[index, inputData[column]]
-            ### DATE modifications
-            for column in inputData['dateColumnsMMDDYYYY']:
-                if column in data.columns:
-                    if type(data.loc[index].at[column][1]) != pandas._libs.missing.NAType:
-                        date = data.loc[index].at[column][1]
+                if column in inputData.keys() and type(sourceData.at[index, inputData[column]]) != pandas._libs.missing.NAType:
+                    if column in inputData['dateColumnsMMDDYYYY']:
+                        date = sourceData.at[index, inputData[column]]
                         date = datetime.datetime.strptime(date,'%Y-%m-%d')
                         date = datetime.datetime.strftime(date, '%m/%d/%Y')
-                        data.loc[index].at[column] = date
-            for column in inputData['dateColumnsDDMMYYYY']:
-                if column in data.columns:
-                    if type(data.loc[index].at[column][1]) != pandas._libs.missing.NAType:
-                        date = data.loc[index].at[column][1]
+                        data.at[index, column] = date
+                    elif column in inputData['dateColumnsDDMMYYYY']:
+                        date = sourceData.at[index, inputData[column]]
                         date = datetime.datetime.strptime(date,'%Y-%m-%d')
                         date = datetime.datetime.strftime(date, '%d.%m.%Y')
-                        data.loc[index].at[colum] = date
-            # / DATE modifications
-
-            ### Adding time
-            timeNow = datetime.datetime.today().strftime('%m/%d/%Y %H:%M:%S')
-            for column in inputData['currentTimeColumn']:
-                data.at[index, column] = timeNow
-            # / Adding time
+                        data.at[index, column] = date
+                    elif column in inputData['currentTimeColumn']:
+                        data.at[index, column] = timeNow
+                    else:
+                        data.at[index, column] = sourceData.at[index, inputData[column]]
 
         print(data)
 
