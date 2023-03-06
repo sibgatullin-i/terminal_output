@@ -51,12 +51,6 @@ jsonBlueprintString = '''
 }
 '''
 
-for filename in os.listdir(outputFolder):
-  file = os.path.join(outputFolder, filename)
-  if filename.endswith('.json'):
-    print('Deleting {}'.format(file))
-    os.remove(file)
-
 print('Reading all CSV-files from {}'.format(inputFolder))
 files = []
 for filename in os.listdir(inputFolder):
@@ -69,6 +63,12 @@ if len(files) == 0:
   print('See ya!')
   exit()
 print('Found files: {}'.format(len(files)))
+
+for filename in os.listdir(outputFolder):
+  file = os.path.join(outputFolder, filename)
+  if filename.endswith('.json'):
+    print('Deleting {}'.format(file))
+    os.remove(file)
 
 for filename in os.listdir(inputFolder):
   if filename.endswith('.csv') and os.path.isfile(file):
