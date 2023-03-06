@@ -86,4 +86,4 @@ for filename in os.listdir(inputFolder):
     with open(newFile, 'w') as outfile:
       json.dump(jsonBlueprint, outfile, indent = 2, ensure_ascii = True)
     print('JSON-file saved: {}'.format(newFile))
-    del csvData,RIC,field,jsonBlueprint
+    del csvData, RIC, field, jsonBlueprint, newFile, newFilename
