@@ -58,6 +58,8 @@ for inputDataFile in os.listdir(inputFolder):
         timeNow = datetime.datetime.today().strftime('%m/%d/%Y %H:%M:%S')
         print(sourceData)
         for index in sourceData.index:
+            for column in inputData['currentTimeColumns']:
+                data.at[index, column] = timeNow
             for column in data.columns:
                 if column in inputData.keys() and type(sourceData.at[index, inputData[column]]) != pandas._libs.missing.NAType:
                     if column in inputData['dateColumnsMMDDYYYY']:
@@ -70,8 +72,6 @@ for inputDataFile in os.listdir(inputFolder):
                         date = datetime.datetime.strptime(date,'%Y-%m-%d')
                         date = datetime.datetime.strftime(date, '%d.%m.%Y')
                         data.at[index, column] = date
-                    elif column in inputData['currentTimeColumn']:
-                        data.at[index, column] = timeNow
                     else:
                         data.at[index, column] = sourceData.at[index, inputData[column]]
         data.dropna(subset=['RIC'], inplace=True)

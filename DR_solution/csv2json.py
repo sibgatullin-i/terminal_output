@@ -47,7 +47,9 @@ jsonBlueprintString = '''
 		"General Value1 Date",
 		"General Value2 Date"
 	],
-    "currentTimeColumn": ["Instrument Snap Time"]
+    "currentTimeColumns": [
+			"Instrument Snap Time"
+		]
 }
 '''
 
