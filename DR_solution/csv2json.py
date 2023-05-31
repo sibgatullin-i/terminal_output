@@ -8,8 +8,8 @@ outputFolder = os.path.join(script_rootFolder, 'inputJSON')
 jsonBlueprintString = '''
 {
 	"fileName":  "filename.csv",
-  "RICs":  [],
-  "fields":  [],
+	"RICs":  [],
+	"fields":  [],
 	"Bid Price": "CF_BID",
 	"Primary Activity": "PRIMACT_1",
 	"Last Price": "CF_LAST",
@@ -21,10 +21,12 @@ jsonBlueprintString = '''
 	"Official Close Price": "OFF_CLOSE",
 	"Official Ask": "CF_ASK",
 	"Close Price": "CF_CLOSE",
+	"Close Mid Price": "MID_CLOSE",
 	"High Price": "CF_HIGH",
 	"Primary Activity 2": "PRIMACT_2",
 	"Low Price": "CF_LOW",
 	"VWAP Price": "VWAP",
+	"Currency Code": "CF_CURR",
 	"Fixing Date": "FIX_DATE",
 	"Trade Date": "CF_DATE",
 	"Bid Yield": "BID_YIELD",
