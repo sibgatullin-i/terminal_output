@@ -52,9 +52,9 @@ jsonBlueprintString = '''
     	"currentTimeColumns": [
 		"Instrument Snap Time"
 	],
-	"fieldsTranslation": [
-		["TR.TSVWAP", "VWAP"]
-	]
+	"fieldsTranslation": {
+		"TR.TSVWAP": "VWAP"
+	}
 }
 '''
 
