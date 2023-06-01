@@ -33,13 +33,13 @@ jsonBlueprintString = '''
 	"General Value2 Date": "GV2_DATE",
 	"General Value2": "GEN_VAL1",
 	"Previous Close Price": "HST_CLOSE",
-  "Universal Close Price": "HST_CLOSE",
+  	"Universal Close Price": "HST_CLOSE",
 	"Previous Day Trade Date": "HSTCLSDATE",
 	"Exchange Description": "CF_EXCHNG",
 	"Currency Code": "CF_CURR",
 	"Volume": "CF_VOL",
-  "RIC":  "Instrument",
-  "dateColumnsMMDDYYYY": [
+  	"RIC":  "Instrument",
+ 	"dateColumnsMMDDYYYY": [
 		"Trade Date",
 		"Fixing Date",
 		"Previous Day Trade Date",
@@ -49,9 +49,12 @@ jsonBlueprintString = '''
 		"General Value1 Date",
 		"General Value2 Date"
 	],
-    "currentTimeColumns": [
-			"Instrument Snap Time"
-		]
+    	"currentTimeColumns": [
+		"Instrument Snap Time"
+	],
+	"fieldsTranslation": [
+		["TR.TSVWAP", "VWAP"]
+	]
 }
 '''
 
