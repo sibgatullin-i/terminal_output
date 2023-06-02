@@ -52,11 +52,14 @@ for inputDataFile in os.listdir(inputFolder):
         print('Sending request to terminal...')
         sourceData,err = terminal.get_data(instruments,fields)
         sourceData.reset_index()
+        
+        print('Applying fields translation rules:')
+        sourceData.rename(columns=inputData['fieldsTranslation'], inplace=True)
+        print(sourceData)        
 
         data = pandas.DataFrame(index = range(len(inputData['RICs'])), columns = inputData['fields'])
-
+        
         timeNow = datetime.datetime.today().strftime('%m/%d/%Y %H:%M:%S')
-        print(sourceData)
         for index in sourceData.index:
             for column in inputData['currentTimeColumns']:
                 data.at[index, column] = timeNow
