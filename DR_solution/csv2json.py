@@ -53,7 +53,8 @@ jsonBlueprintString = '''
 		"Instrument Snap Time"
 	],
 	"fieldsTranslation": {
-		"TR.TSVWAP": "VWAP"
+		"returned field name": "requested field name",
+		"VWAP": "TR.TSVWAP"
 	}
 }
 '''
