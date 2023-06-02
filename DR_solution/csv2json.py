@@ -33,7 +33,9 @@ jsonBlueprintString = '''
 	"General Value2 Date": "GV2_DATE",
 	"General Value2": "GEN_VAL1",
 	"Previous Close Price": "HST_CLOSE",
+	"Previous Close Date": "HSCLSDATE",
   	"Universal Close Price": "HST_CLOSE",
+	"Universal Close Price Date": "HSTCLSDATE",
 	"Previous Day Trade Date": "HSTCLSDATE",
 	"Exchange Description": "CF_EXCHNG",
 	"Currency Code": "CF_CURR",
@@ -43,7 +45,9 @@ jsonBlueprintString = '''
 		"Trade Date",
 		"Fixing Date",
 		"Previous Day Trade Date",
-		"Universal Day Trade Date"
+		"Previous Close Date",
+		"Universal Day Trade Date",
+		"Universal Close Price Date"
 	],
 	"dateColumnsDDMMYYYY": [
 		"General Value1 Date",
