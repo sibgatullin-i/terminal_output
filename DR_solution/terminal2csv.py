@@ -58,12 +58,11 @@ for inputDataFile in os.listdir(inputFolder):
         print(sourceData)        
 
         data = pandas.DataFrame(index = range(len(inputData['RICs'])), columns = inputData['fields'])
-        
         timeNow = datetime.datetime.today().strftime('%m/%d/%Y %H:%M:%S')
         for index in sourceData.index:
-            for column in inputData['currentTimeColumns']:
-                data.at[index, column] = timeNow
             for column in data.columns:
+                if column in inputData['currentTimeColumns']:
+                    data.at[index, column] = timeNow
                 if column in inputData.keys() and type(sourceData.at[index, inputData[column]]) != pandas._libs.missing.NAType:
                     if column in inputData['dateColumnsMMDDYYYY']:
                         date = sourceData.at[index, inputData[column]]
