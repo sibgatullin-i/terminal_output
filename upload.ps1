@@ -50,9 +50,9 @@ if ((Get-ChildItem $PSScriptRoot\tools\output.csv).count -eq 0){
 }
 
 #check for extra instruments #1
-if ((Get-Content $PSScriptRoot\tools\output.csv | Select-String "$($settings.mdhruExtraInstrument1[3])").Count -eq 0) {
-    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text ('¯\_(ツ)_/¯' + "`r`n$instancename`r`nFailed to import $($settings.mdhruExtraInstrument1[3]).")
-}
+#if ((Get-Content $PSScriptRoot\tools\output.csv | Select-String "$($settings.mdhruExtraInstrument1[3])").Count -eq 0) {
+#    Send-TelegramMessage -tgToken $settings.tgToken -chatId $settings.chatId -text ('¯\_(ツ)_/¯' + "`r`n$instancename`r`nFailed to import $($settings.mdhruExtraInstrument1[3]).")
+#}
 
 $lastUpdate = (Get-ChildItem "$PSScriptRoot\tools\output.csv").LastWriteTime
 
