@@ -1,4 +1,6 @@
-$excelFile = "$PSScriptRoot\objects.xlsx"
+$file = read-host "Objects.xlsx filename [default: objects.xlxs]"
+if ($file) { $excelFile = "$PSScriptRoot\$file" }
+else { $excelFile = "$PSScriptRoot\objects.xlsx" }
 $jsonFolder = "$PSScriptRoot\input"
 
 Import-Module ImportExcel
