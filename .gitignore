@@ -7,8 +7,10 @@ settings.json
 *.sha256
 /tools/input/*.json
 /input_night/*.json
+/input_night_monthly/*.json
 /input/*.json
 objects.xlsx
+objects*.xlsx
 /DR_soultion/inputCSV/*.csv
 /DR_solution/inputJSON/*.json
 /DR_solution/outputCSV/*.csv
