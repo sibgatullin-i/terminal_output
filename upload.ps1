@@ -36,7 +36,7 @@ while ($terminalCounter -ge 0) {
     if ((Get-ChildItem $PSScriptRoot\tools\output.csv).count -gt 0) {
         $terminalCounter = -1
     } else {
-        --$terminalCounter
+        $terminalCounter -= 1
         start-Sleep 10
     }
 }
